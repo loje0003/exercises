@@ -4,8 +4,10 @@
 
 // console.log("beløb + moms =", beloeb * (1 + moms));
 
-momsBeregner("500", "1.5");
+fullPrice(500, 33);
 
-function momsBeregner(beloeb, moms = 1.25) {
-  console.log("beløb + moms =", beloeb * moms);
+function fullPrice(price, moms = 25) {
+  const momsFactor = 1 + moms / 100;
+  console.log("momsfaktor", momsFactor);
+  console.log("fullPrice", price * momsFactor);
 }
