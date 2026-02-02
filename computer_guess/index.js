@@ -37,7 +37,7 @@ function computerChoice() {
   guess = Math.floor((min + max) / 2);
   count++;
   computerGuess.classList.remove("hidden");
-  computerGuess.innerHTML = `<h2>Computeren gættede på ${guess}</h2>`;
+  computerGuess.innerHTML = `<h2>Computeren gætter på ${guess}</h2>`;
 }
 
 function forLavt() {
