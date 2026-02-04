@@ -11,9 +11,18 @@ const vehicles = [
   { type: "Løbehjul", passengers: 1, isElectric: true },
 ];
 const tbodyPointer = document.querySelector("tbody");
+const filters = {
+  all: () => vehicles,
+  electric: () => vehicles.filter((v) => v.isElectric),
+  manySeats: () => vehicles.filter((v) => v.passengers > 2),
+  jonasElectric: () => vehicles.filter((v) => v.isElectric && v.ownedBy === "Jonas"),
+  ryeBread: () => vehicles.filter((v) => v.fuel === "Rugbrød" && v.passengers > 1),
+};
+
 showTheseVehicles(vehicles);
 
 function showTheseVehicles(arr) {
+  tbodyPointer.innerHTML = "";
   arr.forEach((each) => {
     tbodyPointer.innerHTML += `<tr>
   <td>${each.type}</td>
@@ -32,25 +41,19 @@ document.querySelectorAll("button").forEach((btn) => {
 });
 
 function klik(evt) {
-  console.log(evt.target.dataser.filter);
+  console.log(evt.target.dataset.filter);
 }
 
-// document.querySelectorAll(".buttons button").forEach((btn) => {
-//   btn.addEventListener("click", () => {
-//     const filter = btn.dataset.season;
-//     if (filter === "All") {
-//       showProducts(allData);
-//     } else {
-//       const filtered = allData.filter((p) => p.season === filter);
-//       showProducts(filtered);
-//     }
-//   });
-// });
+document.querySelectorAll(".filters button").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const filter = btn.dataset.filter;
 
-//  <section class="buttons">
-//    <button data-season="All">All</button>
-//    <button data-season="Summer">Summer</button>
-//    <button data-season="Spring">Spring</button>
-//    <button data-season="Winter">Winter</button>
-//    <button data-season="Fall">Fall</button>
-//  </section>;
+    document.querySelectorAll(".filters button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filterKey = btn.dataset.filter;
+        const filteredVehicles = filters[filterKey]();
+        showTheseVehicles(filteredVehicles);
+      });
+    });
+  });
+});
