@@ -11,6 +11,7 @@ const vehicles = [
   { type: "Løbehjul", passengers: 1, isElectric: true },
 ];
 const tbodyPointer = document.querySelector("tbody");
+
 const filters = {
   all: () => vehicles,
   electric: () => vehicles.filter((v) => v.isElectric),
@@ -19,19 +20,22 @@ const filters = {
   ryeBread: () => vehicles.filter((v) => v.fuel === "Rugbrød" && v.passengers > 1),
 };
 
+// const electricVeh = vehicles.filter((veh) => isElectric);
+// console.log("electrickVeh", electricVeh);
+
 showTheseVehicles(vehicles);
 
 function showTheseVehicles(arr) {
   tbodyPointer.innerHTML = "";
   arr.forEach((each) => {
     tbodyPointer.innerHTML += `<tr>
-  <td>${each.type}</td>
-  <td>${each.fuel}</td>
-  <td>${each.passengers}</td> 
-  <td>${each.stops}</td>
-  <td>${each.ownedBy}</td>
-  <td>${each.isElectric}</td>
-  <td>${each.isTandem}</td>
+  <td>${each.type ?? "-"}</td>
+  <td>${each.fuel ?? "-"}</td>
+  <td>${each.passengers ?? "-"}</td> 
+  <td>${each.stops ?? "-"}</td>
+  <td>${each.ownedBy ?? "-"}</td>
+  <td>${each.isElectric ?? "-"}</td>
+  <td>${each.isTandem ? "X" : "-"}</td>
 </tr>`;
   });
 }
@@ -41,19 +45,13 @@ document.querySelectorAll("button").forEach((btn) => {
 });
 
 function klik(evt) {
-  console.log(evt.target.dataset.filter);
+  console.log("klik", evt.target);
 }
 
 document.querySelectorAll(".filters button").forEach((btn) => {
   btn.addEventListener("click", () => {
-    const filter = btn.dataset.filter;
-
-    document.querySelectorAll(".filters button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const filterKey = btn.dataset.filter;
-        const filteredVehicles = filters[filterKey]();
-        showTheseVehicles(filteredVehicles);
-      });
-    });
+    const filterKey = btn.dataset.filter;
+    const filteredVehicles = filters[filterKey]();
+    showTheseVehicles(filteredVehicles);
   });
 });

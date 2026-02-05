@@ -15,7 +15,7 @@ function generateBreadcrumb(data) {
     // item = et breadcrumb-punkt
     // index = placeringen (0, 1, 2 …)
 
-    if (index === data.length - 1) {
+    if (index === bc.length - 1) {
       li.textContent = item.name;
       // Sidste element skal kun være tekst
     } else {
