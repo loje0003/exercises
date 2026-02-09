@@ -1,0 +1,26 @@
+body[data-theme="hawaii"] {
+  --header-bg-col: rgb(255, 0, 0);
+  --main-bg-col: pink;
+  --footer-bg-col: rgb(255, 0, 0);
+}
+body[data-theme="dark"] {
+  --header-bg-col: rgb(85, 83, 83);
+  --main-bg-col: rgb(138, 138, 138);
+  --footer-bg-col: rgb(85, 83, 83);
+}
+body[data-theme="light"] {
+  --header-bg-col: rgb(224, 213, 213);
+  --main-bg-col: rgb(219, 216, 216);
+  --footer-bg-col: rgb(224, 213, 213);
+}
+header {
+  background-color: var(--header-bg-col);
+}
+
+main {
+  background-color: var(--main-bg-col);
+}
+
+footer {
+  background-color: var(--footer-bg-col);
+}
