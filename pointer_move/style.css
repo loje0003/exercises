@@ -1,0 +1,11 @@
+/* Hele skærmen fyldes af body */
+:root {
+  --hue: 200; /* blå */
+  --saturation: 100%; /* fuld farve */
+  --lightness: 50%; /* ændres med mus */
+}
+
+body {
+  background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+  transition: background-color 0.1s linear; /* smooth farveskift */
+}
