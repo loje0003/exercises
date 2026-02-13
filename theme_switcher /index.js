@@ -1,8 +1,15 @@
 "use strict";
+console.log("hvilket theme er gemt", localStorage.getItem("theme"));
 
-const themeSelect = document.getElementById("theme");
-const body = document.body;
+document.querySelector("#theme").addEventListener("change", theChange);
+setTheme(localStorage.getItem("theme"));
 
-themeSelect.addEventListener("change", () => {
-  body.setAttribute("data-theme", themeSelect.value);
-});
+function theChange(evt) {
+  console.log("change", evt.target.value);
+  setTheme(evt.target.value);
+}
+
+function setTheme(theme) {
+  localStorage.setItem("theme", theme);
+  document.querySelector("body").dataset.theme = theme;
+}

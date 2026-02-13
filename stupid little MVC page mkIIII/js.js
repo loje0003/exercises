@@ -4,8 +4,10 @@ const h2names = document.querySelector("#names");
 const inputName = document.querySelector("#name");
 const button = document.querySelector("button");
 
+const modeHenteFraLS = JSON.parse(localStorage.getItem("stupid_array"));
+
 //Model
-const model = ["Peter", "Paul", "Mary"];
+const model = modeHenteFraLS || ["Peter", "Paul", "Mary"];
 // controller
 init();
 
@@ -22,6 +24,7 @@ function removeNameFromModel(id) {
 }
 
 function upDateView() {
+  localStorage.setItem("stupid_array", JSON.stringify(model));
   h2names.innerHTML = "";
   model.forEach((each, i) => {
     h2names.innerHTML += `<span class="clickname" data-id="${i}">${each}</span> `;
